@@ -1,24 +1,20 @@
-# Makefile for compiling and running a program with SDL2 library
-
-# Compiler options
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c11
-LDFLAGS = -L./lib -lSDL2
+CFLAGS = -Wall -Werror `sdl2-config --cflags`
+LDFLAGS = `sdl2-config --libs`
 
-# Source files and executable
-SRC = main.c
-OBJ = $(SRC:.c=.o)
-EXEC = main
+INC = -I include
+SRC_DIR = source
 
-# Build rules
-all: $(EXEC)
+SRCS = $(SRC_DIR)/Entites_du_jeu.c main.c
+OBJS = $(SRCS:.c=.o)
 
-$(EXEC): $(OBJ)
-	$(CC) $(LDFLAGS) $^ -o $@
+all: program
 
-$(OBJ): $(SRC)
-	$(CC) $(CFLAGS) -c $< -o $@
+program: $(OBJS)
+	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $@ $(LDFLAGS)
 
-# Cleaning rule
+%.o: %.c
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
 clean:
-	rm -f $(OBJ) $(EXEC)
+	rm -f $(OBJS) program

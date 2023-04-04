@@ -1,6 +1,6 @@
 //decomposition du jeu ///
 
---Partie graphique
+-Partie graphique
 
 --Partie Client (GUI)
 
@@ -15,9 +15,13 @@ Joueur =structure (puissance des bombes, pv, etc)
 // Structure du code ///
  • Initialisation de Sdl2
  • Création d une fenêtre de jeu ( initialisation avec SDL2)
+
  • Charger les sprites ( les trouver avant)
+
  • Créer les structures nécessaire au jeu (notamment une structure globale qui décrira toutes les entités via leurs coordonnées).
 Les structure seront : La structure entité, joueur, ennemis, bombe, explosion, bonus, et carte.
+ 
+ 
  • Creer les fonctions pour l exécution du jeu :
 -Initialiser sdl
 -charger les textures

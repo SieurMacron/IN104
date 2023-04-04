@@ -1,6 +1,7 @@
 // Solal Marzouk & Clément Nedonsel//
 #include <SDL2/SDL.h>
 #include <stdlib.h>
+#include "source/Entite_du_jeu.h"
 
 int main(int argc, char *argv[])
 {
