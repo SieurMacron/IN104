@@ -3,7 +3,7 @@ CFLAGS = -Wall -Werror `sdl2-config --cflags`
 LDFLAGS = `sdl2-config --libs`
 
 INC = -I include
-SRC_DIR = source
+SRC_DIR =source 
 
 SRCS = $(SRC_DIR)/Entites_du_jeu.c main.c
 OBJS = $(SRCS:.c=.o)
