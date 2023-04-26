@@ -2,16 +2,31 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
+<<<<<<< Updated upstream
 #include <SDL_image.h> /*permet d'afficher des images au format png, pdf...*/
 #include "source/Entite_du_jeu.h"
 #include <time.h>
+=======
+#include <stdbool.h>
+//#include <SDL_image.h> /*permet d'afficher des images au format png, pdf...*/
+#include "source/Entites_du_jeu.h"
+#include "source/fonctions_jeu.h"
+>>>>>>> Stashed changes
 
 
 
 int main(int argc, char *argv[])
 {
+
+/* Initialisation de la carte et du (des) joueurs.e.s */
+Carte* carte;
+
+tuile* tuile_courante;
+
+joueur* mon_joueur;
+
 /*initialisation de SDL*/
-    if(0 != SDL_Init(SDL_EVERYTHING)){
+    if(0 != SDL_Init(SDL_INIT_EVERYTHING)){
         fprintf(stderr, "Erreur SDL_Init : %s", SDL_GetError());
         return EXIT_FAILURE;
     }
@@ -20,7 +35,7 @@ int main(int argc, char *argv[])
 
 
     SDL_Event events;  // evenement courant à traiter(clic souris, entrée clavier, evenement fenetre)
-    bool isOpen{ true };
+    bool isOpen = true ;
 
 /*boucle principale*/
 
@@ -33,7 +48,7 @@ int main(int argc, char *argv[])
                     break;
 
                 case SDL_KEYDOWN: /*si l'utilisateur presse une touche*/
-                    switch(event.key.keysym.sym){ /*différentes touches possibles*/
+                    switch(events.key.keysym.sym){ /*différentes touches possibles*/
                         case SDLK_SPACE: /*si espace est pressée*/
                             /*on pose une bombe*/
                             break;
@@ -61,5 +76,14 @@ int main(int argc, char *argv[])
        
     }
 
+<<<<<<< Updated upstream
+=======
+
+    SDL_DestroyTexture(texture_ecran);
+    SDL_FreeSurface(ecran);
+    SDL_DestroyWindow(window);  
+    SDL_DestroyRenderer(renderer);
+    SDL_Quit();
+>>>>>>> Stashed changes
     return 0;
 }

@@ -30,7 +30,6 @@ typedef enum {
     typedef struct{
         int x,y ;
         EntityType type;
-        SDL_Texture* texture;
     }tuile;
 
 /*bombe*/
@@ -54,8 +53,8 @@ typedef struct{
 
 typedef struct{
     Entite feur;
-    int type_de_bonus // Definir plus tard le type de bonus
-}bonus;
+    int type_de_bonus; // Definir plus tard le type de bonus
+} bonus;
 
 /*Carte */
 typedef struct {
