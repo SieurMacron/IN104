@@ -24,7 +24,8 @@ typedef enum {
     int health;
     EntityType type;
     SDL_Texture* texture;
-}Entite;
+    }
+    Entite;
 
     //Definition des tuiles qui composeront la carte
     typedef struct{
@@ -68,7 +69,7 @@ typedef struct {
 /*Explosion*/
 typedef struct{
     Entite feur;
-    float timer; //Duréee de l'explosion
+    float timer; //Durée de l'explosion
 }explosion;
 
 
