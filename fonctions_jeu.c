@@ -1,6 +1,7 @@
 /*Fonctions du jeu*/
 #include "Carte.h"
 #include "Entites_du_jeu.h"
+#include <time.h>
 
 void deplacer_joueur(Carte* carte, tuile* tuile_courante,joueur* mon_joueur,deplacement mon_joueur->dep){
     switch (mon_joueur->dep){
@@ -58,9 +59,6 @@ void deplacer_joueur(Carte* carte, tuile* tuile_courante,joueur* mon_joueur,depl
             break;
 
     }
-
-
-
-
-
 }
+
+void poser_bombe (Carte* carte, tuile* tuile_courante,joueur* mon_joueur,)

@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <SDL_image.h> /*permet d'afficher des images au format png, pdf...*/
 #include "source/Entite_du_jeu.h"
+#include <time.h>
 
 
 
@@ -20,30 +21,6 @@ int main(int argc, char *argv[])
 
     SDL_Event events;  // evenement courant à traiter(clic souris, entrée clavier, evenement fenetre)
     bool isOpen{ true };
-
-    /*Fenetre de jeu*/
-
-        SDL_Window * window= SDL_CreateWindow('Fenetre_jeu', SDL_WINDOWPOS_CENTERED /*coordonnées centrées*/, SDL_WINDOWPOS_CENTERED, 640/*largeur*/, 680/*hauteur*/, SDL_WINDOW_SHOWN, SDL_WINDOW_FULLSCREEN);
-        if(NULL == window)
-        {
-            fprintf(stderr, "Erreur lors de la création de la fenetre : %s", SDL_GetError());
-            return EXIT_FAILURE;
-        }
-        SDL_Renderer* renderer=SDL_CreateRenderer(pwindow, -1, SDL_RENDERER_ACCELERATED);
-
-        SDL_Surface * ecran= NULL; //on crée notre image ecran
-       
-        SDL_WM SetIcon (IMG_Load(/*"nom de l'icone bomberman"*/)); //affiche l'icone du jeu
-        SDL_WM_SetCaption(/*"nom de notre jeu"*/,NULL); // affiche le nom du jeu
-
-        ecran = IMG_Load(/*"nom de notre ecran"*/); //on charge notre image d'ecran dans le pointeur vers l'ecran
-        SDL_Texture * texture_ecran = SDL_CreateTextureFromSurface(renderer, ecran);
-
-        SDL_RenderClear(renderer); //efface l'ecran
-        SDL_RenderCopy(renderer, texture_ecran, NULL, NULL); //affiche la texture
-        SDL_RenderPresent(renderer); // met à jour l'affichage
-
-       
 
 /*boucle principale*/
 
@@ -81,17 +58,8 @@ int main(int argc, char *argv[])
                         break;
             }
         }
-        /*on rafraichit l'image à chaque tour de boucle*/
-        SDL_RenderClear(renderer); //efface l'ecran
-        SDL_RenderCopy(renderer, texture_ecran, NULL, NULL); //affiche la texture
-        SDL_RenderPresent(renderer); // met à jour l'affichage
+       
     }
 
-
-    SDL_DestroyTexture(texture_ecran);
-    SDL_FreeSurface(ecran);
-    SDL_DestroyWindow(Window);  
-    SDL_DestroyRenderer(renderer);
-    SDL_Quit();
     return 0;
 }
