@@ -40,23 +40,36 @@ int main(int argc, char *argv[])
 
         ecran = IMG_Load(/*"nom de notre ecran"*/); //on charge notre image d'ecran dans le pointeur vers l'ecran
         SDL_Texture * texture_ecran = SDL_CreateTextureFromSurface(renderer, ecran);
+        // cette fonction crée une texture à partir d'une surface. Texture= image stockée dans la mémoire graphique, plus rapide à afficher qu'une surface.
 
         SDL_RenderClear(renderer); //efface l'ecran
         SDL_RenderCopy(renderer, texture_ecran, NULL, NULL); //affiche la texture
         SDL_RenderPresent(renderer); // met à jour l'affichage
 
 /*initialisation des sprites*/
-    struct Entite feur1={/*x*/,/*y*/,100, JOUEUR,IMG_Load(/*nom mon_joueur*/)};
-    struct Entite feur2={};
-    struct joueur mon_joueur= {IMG_Load(/*nom joueur*/);
-    struct joueur adversaire= IMG_Load(/*nom joueur1*/);
+    struct Entite feur1={/*x*/,/*y*/,60, JOUEUR,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom mon_joueur*/))};
+    struct Entite feur2={/*x*/,/*y*/,60, JOUEUR,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom adversaire*/))};
+    struct joueur mon_joueur= {feur1,20,/*vitesse*/,5.0,1,NULL }; 
+    struct joueur adversaire= {feur2,20,/*vitesse*/,5.0,1,NULL };
+    //Remarque: comment stocker les bonus du joueur? Besoin d'une puissance alors que la bombe en a déjà une?
+
+    struct Entite feur3={/*x*/,/*y*/,10000, MURDUR,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom murdur*/))};
+    struct Entite feur4={/*x*/,/*y*/,20, MURMOU,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom murmou*/))};
+    struct mur murdur= {feur3,/*butin*/}; 
+    struct mur murmou= {feur4,/*butin*/};
+
+    struct Entite feur5={/*x*/,/*y*/,10000, BOMBE,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom bombe*/))};
+    struct bombe bombe= {feur5,3.0,20};
+
+    struct Entite feur6={/*x*/,/*y*/,10000, EXPLOSION,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom explosion*/))};
+    struct explosion explosion= {feur6, 1.0};
+    //Remarque: il faut rajouter la portée de l'explosion.
+
+    struct Entite feur7={/*x*/,/*y*/,10000, BONUS,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom bonus*/))};
+    struct bonus bonus= {feur7,/*type de bonus*/};
+    //Remarque: type de bonus et sprite correspondant définis aléatoirement à l'apparition du bonus?
+
     
-    struct mur murdur= IMG_Load(/*nom murdur*/);
-    struct mur murmou= IMG_Load(/*nom murmou*/);
-    struct bombe bombe= IMG_Load(/*nom bombe*/);
-    struct explosion explosion= IMG_Load(/*nom explosion*/);
-    struct bonus bonus= IMG_Load(/*nom bonus*/);
-    struct vide vide= IMG_Load(/*nom vide*/);
 
 /*boucle principale*/
 
@@ -72,6 +85,8 @@ int main(int argc, char *argv[])
                     switch(event.key.keysym.sym){ /*différentes touches possibles*/
                         case SDLK_SPACE: /*si espace est pressée*/
                             /*on pose une bombe*/
+                            feur5->x=feur1->x;
+                            feur5->y=feur1->y;
                             break;
                         case SDL_SCANCODE_UP : /*si fleche du haut est pressée*/
                             /*déplacer le sprite vers le haut*/
