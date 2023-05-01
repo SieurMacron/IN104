@@ -1,11 +1,5 @@
 /*Fonctions du jeu*/
-<<<<<<< Updated upstream:fonctions_jeu.c
-#include "Carte.h"
-#include "Entites_du_jeu.h"
-#include <time.h>
-=======
 #include "fonctions_jeu.h"
->>>>>>> Stashed changes:source/fonctions_jeu.c
 
 void deplacer_joueur(Carte* carte, tuile* tuile_courante,joueur* mon_joueur,deplacement mon_joueur->dep){
     switch (mon_joueur->dep){

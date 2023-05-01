@@ -47,10 +47,12 @@ int main(int argc, char *argv[])
         SDL_RenderPresent(renderer); // met à jour l'affichage
 
 /*initialisation des sprites*/
-    struct Entite feur1={/*x*/,/*y*/,60, JOUEUR,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom mon_joueur*/))};
+    struct Entite feur1={/*x de départ*/,/*y de départ*/,60, JOUEUR,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom mon_joueur de profil droit*/))};
     struct Entite feur2={/*x*/,/*y*/,60, JOUEUR,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom adversaire*/))};
     struct joueur mon_joueur= {feur1,20,/*vitesse*/,5.0,1,NULL }; 
     struct joueur adversaire= {feur2,20,/*vitesse*/,5.0,1,NULL };
+    SDL_Rect dstrect_mon_joueur = { feur1->x,feur1->y ,/*largeur de l'image*/, /*hauteur de l'image*/ };
+    SDL_Rect dstrect_adversaire = { /*x de départ*/,/*y de départ*/ ,/*largeur de l'image*/, /*hauteur de l'image*/ };
     //Remarque: comment stocker les bonus du joueur? Besoin d'une puissance alors que la bombe en a déjà une?
 
     struct Entite feur3={/*x*/,/*y*/,10000, MURDUR,SDL_CreateTextureFromSurface(renderer, IMG_Load(/*nom murdur*/))};
@@ -87,18 +89,53 @@ int main(int argc, char *argv[])
                             /*on pose une bombe*/
                             feur5->x=feur1->x;
                             feur5->y=feur1->y;
+                            SDL_Rect dstrect_bombe = { feur5->x,feur5->y ,/*largeur de l'image*/, /*hauteur de l'image*/ };
+                            SDL_RenderCopy(renderer,feur5->texture, NULL, &dstrect_bombe);
+                            SDL_DestroyTexture(feur5->texture); //à sortir du switch peut-être
                             break;
                         case SDL_SCANCODE_UP : /*si fleche du haut est pressée*/
                             /*déplacer le sprite vers le haut*/
+                            feur1->texture=SDL_CreateTextureFromSurface(renderer, IMG_Load(/*mon_joueur de dos*/));
+                            for (int i=0, i</*largeur d'une tuile*/,i++)
+                            {
+                                feur1->y--;
+                                SDL_RenderCopy(renderer, feur1->texture, NULL, &dstrect_mon_joueur);
+                                /*prendre en compte la vitesse de déplacement en laissant un délai entre chaque itération*/
+                                SDL_DestroyTexture(feur1->texture);
+                            }
                             break;
                         case SDL_SCANCODE_DOWN: /*si flehce du bas est pressée*/
                             /*déplacer le sprite vers le bas*/
+                            feur1->texture=SDL_CreateTextureFromSurface(renderer, IMG_Load(/*mon_joueur de face*/));
+                            for (int i=0, i</*largeur d'une tuile*/,i++)
+                            {
+                                feur1->y++;
+                                SDL_RenderCopy(renderer, feur1->texture, NULL, &dstrect_mon_joueur);
+                                /*prendre en compte la vitesse de déplacement en laissant un délai entre chaque itération*/
+                                SDL_DestroyTexture(feur1->texture);
+                            }
                             break;
                         case SDL_SCANCODE_LEFT: /*si fleche de gauche est pressée*/
                             /*déplacer le sprite vers la gauche*/
+                            feur1->texture=SDL_CreateTextureFromSurface(renderer, IMG_Load(/*mon_joueur de profil gauche*/));
+                            for (int i=0, i</*largeur d'une tuile*/,i++)
+                            {
+                                feur1->x--;
+                                SDL_RenderCopy(renderer, feur1->texture, NULL, &dstrect_mon_joueur);
+                                /*prendre en compte la vitesse de déplacement en laissant un délai entre chaque itération*/
+                                SDL_DestroyTexture(feur1->texture);
+                            }
                             break;
                         case SDL_SCANCODE_RIGHT: /*si fleche de droite est pressée*/
                             /*déplacer le sprite vers la droite*/
+                            feur1->texture=SDL_CreateTextureFromSurface(renderer, IMG_Load(/*mon_joueur de profil droit*/));
+                            for (int i=0, i</*largeur d'une tuile*/,i++)
+                            {
+                                feur1->x++;
+                                SDL_RenderCopy(renderer, feur1->texture, NULL, &dstrect_mon_joueur);
+                                /*prendre en compte la vitesse de déplacement en laissant un délai entre chaque itération*/
+                                SDL_DestroyTexture(feur1->texture);
+                            }
                             break;
                          default: /*si toute autre touche est pressée*/
                             /*on ne fait rien*/
