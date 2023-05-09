@@ -1,6 +1,7 @@
 // Entités du jeu
 #ifndef Entités_du_jeu_H
 #define Entités_du_jeu_H
+#include <SDL2/SDL.h>
 
 /*Definition d'une entité*/
 typedef enum {
