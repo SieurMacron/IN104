@@ -15,7 +15,7 @@ void visu()
 
 
     SDL_Event events;  // evenement courant à traiter(clic souris, entrée clavier, evenement fenetre)
-    bool isOpen{true };
+    bool isOpen = true ;
 
 /*Fenetre de jeu*/
 
@@ -25,15 +25,20 @@ void visu()
             fprintf(stderr, "Erreur lors de la création de la fenetre : %s", SDL_GetError());
             return EXIT_FAILURE;
         }
-        SDL_Renderer* renderer=SDL_CreateRenderer(pwindow, -1, SDL_RENDERER_ACCELERATED);
+        SDL_Renderer* renderer=SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
         SDL_Surface * ecran= NULL; //on crée notre image ecran
        
-        SDL_WM SetIcon (IMG_Load(/*"nom de l'icone bomberman"*/)); //affiche l'icone du jeu
-        SDL_WM_SetCaption(/*"nom de notre jeu"*/,NULL); // affiche le nom du jeu
+        //SDL_WM_SetIcon (IMG_Load(/*"nom de l'icone bomberman"*/)); //affiche l'icone du jeu
+        //SDL_WM_SetCaption(/*"nom de notre jeu"*/,NULL); // affiche le nom du jeu
 
-        ecran = IMG_Load(/*"nom de notre ecran"*/); //on charge notre image d'ecran dans le pointeur vers l'ecran
-        SDL_Texture * texture_ecran = SDL_CreateTextureFromSurface(renderer, ecran);
+        //ecran = IMG_Load(/*"nom de notre ecran"*/); //on charge notre image d'ecran dans le pointeur vers l'ecran
+        struct SDL_Rect rect={50,50,600,600};
+        
+        ecran=rect;
+        
+        
+        //SDL_Texture * texture_ecran = SDL_CreateTextureFromSurface(renderer, ecran);
         // cette fonction crée une texture à partir d'une surface. Texture= image stockée dans la mémoire graphique, plus rapide à afficher qu'une surface.
 
         SDL_RenderClear(renderer); //efface l'ecran
