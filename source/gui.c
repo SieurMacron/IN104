@@ -1,9 +1,15 @@
 /* Solal Marzouk & Clément Nedonsel*/
+#include <SDL2/SDL.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <SDL_image.h> /*permet d'afficher des images au format png, pdf...*/
+#include "source/Entite_du_jeu.h"
+#include <time.h>
+#include <unistd.h>
 
-#include "gui.h"
 
 
-void visu()
+int main(int argc, char *argv[])
 {
 /*initialisation de SDL*/
     if(0 != SDL_Init(SDL_EVERYTHING)){
@@ -98,14 +104,19 @@ void visu()
                                 SDL_DestroyTexture(feur1->texture);
                             }
                             break;
-                        case SDL_SCANCODE_DOWN: /*si flehce du bas est pressée*/
+                        case SDL_SCANCODE_DOWN: /*si fleche du bas est pressée*/
                             /*déplacer le sprite vers le bas*/
                             feur1->texture=SDL_CreateTextureFromSurface(renderer, IMG_Load(/*mon_joueur de face*/));
                             for (int i=0, i</*largeur d'une tuile*/,i++)
                             {
+                                clock_t start = clock(); //on lance un chrono
+                                clock_t elapsed;
                                 feur1->y++;
                                 SDL_RenderCopy(renderer, feur1->texture, NULL, &dstrect_mon_joueur);
                                 /*prendre en compte la vitesse de déplacement en laissant un délai entre chaque itération*/
+                                elapsed = clock() - start;
+                                double elapsed_time = ((double) elapsed) / CLOCKS_PER_SEC;
+                                sleep((1/mon_joueur->/*vitesse*/)-elapsed_time); //on attend pour respecter le temps de déplacement du joueur
                                 SDL_DestroyTexture(feur1->texture);
                             }
                             break;
@@ -114,9 +125,14 @@ void visu()
                             feur1->texture=SDL_CreateTextureFromSurface(renderer, IMG_Load(/*mon_joueur de profil gauche*/));
                             for (int i=0, i</*largeur d'une tuile*/,i++)
                             {
+                                clock_t start = clock(); //on lance un chrono
+                                clock_t elapsed;
                                 feur1->x--;
                                 SDL_RenderCopy(renderer, feur1->texture, NULL, &dstrect_mon_joueur);
                                 /*prendre en compte la vitesse de déplacement en laissant un délai entre chaque itération*/
+                                elapsed = clock() - start;
+                                double elapsed_time = ((double) elapsed) / CLOCKS_PER_SEC;
+                                sleep((1/mon_joueur->/*vitesse*/)-elapsed_time); //on attend pour respecter le temps de déplacement du joueur
                                 SDL_DestroyTexture(feur1->texture);
                             }
                             break;
