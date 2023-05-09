@@ -59,4 +59,13 @@ void deplacer_joueur(Carte* carte, tuile* tuile_courante,joueur* mon_joueur,depl
     }
 }
 
-void poser_bombe (Carte* carte, tuile* tuile_courante,joueur* mon_joueur,)
+void poser_bombe (Carte* carte, tuile* tuile_courante,joueur* mon_joueur)
+{
+    if(instant_pose_bombe-clock()<temps_recharge){
+        switch((carte->grille[tuile_courante->x][tuile_courante->y]).type){
+            case VIDE:
+                
+        }
+
+    }
+}

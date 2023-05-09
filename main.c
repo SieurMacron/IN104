@@ -2,16 +2,10 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
-<<<<<<< Updated upstream
-#include <SDL_image.h> /*permet d'afficher des images au format png, pdf...*/
-#include "source/Entite_du_jeu.h"
-#include <time.h>
-=======
 #include <stdbool.h>
 //#include <SDL_image.h> /*permet d'afficher des images au format png, pdf...*/
 #include "source/Entites_du_jeu.h"
 #include "source/fonctions_jeu.h"
->>>>>>> Stashed changes
 
 
 
@@ -51,6 +45,7 @@ joueur* mon_joueur;
                     switch(events.key.keysym.sym){ /*différentes touches possibles*/
                         case SDLK_SPACE: /*si espace est pressée*/
                             /*on pose une bombe*/
+                            clock_t instant_pose_bombe = clock(); // on stocke l'instant où a été posé la dernière bombe
                             break;
                         case SDL_SCANCODE_UP : /*si fleche du haut est pressée*/
                             deplacer_joueur(carte, tuile_courante,mon_joueur, HAUT);
