@@ -12,7 +12,7 @@ Carte* creation_carte(int largeu_r, int hauteu_r) {
     carte->hauteur = hauteu_r;
 
     // Création de la zone de mémoire pour le tableau de tuiles
-    carte->tuile** = malloc(sizeof(tuile*) * hauteu_r);
+    carte->grille** = malloc(sizeof(tuile*) * hauteu_r);
     for (int i = 0; i < hauteu_r; i++) {
         carte->grille[i] = malloc(sizeof(tuile) * largeu_r);
     }

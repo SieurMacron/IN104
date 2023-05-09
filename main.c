@@ -72,7 +72,7 @@ joueur* mon_joueur;
        
     }
     // Mise à jour des entités
-        mise_a_jour(carte->entities, carte->num_entities, map);
+        mise_a_jour(carte->entities, carte->num_entities, carte);
 
         // Affichage du plateau de jeu et des entités
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
