@@ -71,7 +71,15 @@ joueur* mon_joueur;
         }
        
     }
+    // Mise à jour des entités
+        mise_a_jour(carte->entities, carte->num_entities, map);
 
+        // Affichage du plateau de jeu et des entités
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+        drawMap(renderer, carte);
+        drawEntities(renderer, carte->entities, carte->num_entities);
+        SDL_RenderPresent(renderer);
 
     SDL_DestroyTexture(texture_ecran);
     SDL_FreeSurface(ecran);
@@ -79,4 +87,7 @@ joueur* mon_joueur;
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
     return 0;
+
+
+
 }
