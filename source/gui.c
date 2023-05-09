@@ -1,15 +1,9 @@
 /* Solal Marzouk & Clément Nedonsel*/
-#include <SDL2/SDL.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <SDL_image.h> /*permet d'afficher des images au format png, pdf...*/
-#include "source/Entite_du_jeu.h"
-#include <time.h>
-#include <unistd.h>
+
+#include "gui.h"
 
 
-
-int main(int argc, char *argv[])
+void visu()
 {
 /*initialisation de SDL*/
     if(0 != SDL_Init(SDL_EVERYTHING)){

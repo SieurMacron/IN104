@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "source/gui.h"
 //#include <SDL_image.h> /*permet d'afficher des images au format png, pdf...*/
 #include "source/Entites_du_jeu.h"
 #include "source/fonctions_jeu.h"
@@ -71,14 +72,11 @@ joueur* mon_joueur;
        
     }
 
-<<<<<<< Updated upstream
-=======
 
     SDL_DestroyTexture(texture_ecran);
     SDL_FreeSurface(ecran);
     SDL_DestroyWindow(window);  
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
->>>>>>> Stashed changes
     return 0;
 }

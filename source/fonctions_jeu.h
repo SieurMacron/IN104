@@ -11,3 +11,5 @@
 
 void deplacer_joueur();
 
+#endif
+
