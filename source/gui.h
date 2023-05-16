@@ -34,3 +34,8 @@ void visu();
 
     // mettre à jour la fenêtre
     SDL_UpdateWindowSurface(window);
+
+
+
+    SDL_Surface* screenSurface; // la surface de la fenêtre
+    SDL_Surface* drawSurface; // la surface de dessin
