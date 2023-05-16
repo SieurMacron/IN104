@@ -1,53 +1,62 @@
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "maze.h"
-#include "graphics.h"
-#include "network.h"
+#include "Carte.h"
+#include "gui.h"
+
 
 int main (int argc, char * argv[])
 {
-	// Pour éviter les segmentation fault.
+	// Le code prend en entrÃ©e un fichier txt qui encode la position des murs et des tuiles
 	if (argc > 1)
-	{
-		int finished, weHaveOneWinner;
+	{	//On initialise les variables verifiant si le jeu se termine 
+		int jeu_termine;
+		int joueur_gagnant;
 
-		finished = weHaveOneWinner = 0;
+		jeu_termine =0; 	// PErmettra de verifier si la partie est finie : si 1 vrai sinon faux
+		joueur_gagnant = 0;	//Indiquera le numero du joueur gagnant
+
+
+		//On crÃ©e le plateau de jeu sur lequel les joueurs vont Ã©voluer
 		
-		// Initialisation et affectation du plateau de jeu.
-		maze_t * maze = (maze_t *) malloc (sizeof (maze_t));
+		Carte_t * Carte = (Carte_t *) malloc (sizeof (Carte_t));
 	
-		// On charge la carte.
-		loadMaze (argv[1], maze);
-		// Affichage de la fenêtre SDL.
-		initWindow (maze->w, maze->h);
+		// On initialise la Carte
+		chargement_Carte (argv[1], Carte);
+		// On affiche la Carte via SDL
+		affichage (Carte->w, Carte->h);
 		// Chargement des images du jeu.
 		loadTiles ();
 	
-		// Début du jeu.
-		while (!finished)
+		// Boucle while qui dÃ©crit le deroulement du jeu :
+		while (!jeu_termine)
 		{
-			// Récupération des évènements.
-			getEvent (maze, &finished);
-			// Mise à jour de la position des joueurs.
-			updatePlayer (maze, 1);
-			// Mise à jour des explosions.
-			updateExplosion (maze);
-			// Mise à jour des bombes.
-			updateBomb (maze);
+			// Execution des differents evenements
+			getEvent (Carte, &jeu_termine);
+			// Mise Ã  jour des explosions.
+			majexplosion (Carte);
+			// Mise Ã  jour des bombes.
+			majbombe (Carte);
+			// Mise Ã  jour de la position ds joueurs
+			majjoueur (Carte, 1);
 			// On ralentit un peu le jeu.
-			SDL_Delay (175);
-			// Mise à jour des cases.
-			paint (maze);
-			// on vérifie que la partie n'est pas terminée.
-			updateOutput (&weHaveOneWinner);
+			//SDL_Delay (175);
+			// Mise Ã  jour des cases.
+			paint (Carte);
+
+
+
+			// Verification de si la partie est finie :
+			updateOutput (&joueur_gagnant);
 		}
 	
-		// Libération de la mémoire.
-		unloadMaze (maze);
+		// On libÃ¨re la mÃ©moire en dÃ©truisant la Carte : 
+		destruction_Carte (Carte);
 	}
 	else
-		printf ("Veuillez renseigner un plateau de jeu.\n./bomberman maze\n");
+
+		// Si le plateau de jeu n'est pas renseignÃ©, on affiche un message d'erreur 
+		printf ("ERREUR : PLATEAU DE JEU NON RENSEIGNE \n");
 
 	return 0;
 }
