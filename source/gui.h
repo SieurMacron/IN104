@@ -15,7 +15,10 @@ void visu();
 #endif
 
 <<<<<<< HEAD
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 // créer la surface de dessin
     drawSurface = SDL_CreateRGBSurface(0, 320, 240, 32, 0, 0, 0, 0);
     if(drawSurface == NULL)
@@ -41,4 +44,8 @@ void visu();
 
     SDL_Surface* screenSurface; // la surface de la fenêtre
     SDL_Surface* drawSurface; // la surface de dessin
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
 >>>>>>> main

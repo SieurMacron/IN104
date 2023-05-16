@@ -43,6 +43,9 @@ void visu()
         // cette fonction crée une texture à partir d'une surface. Texture= image stockée dans la mémoire graphique, plus rapide à afficher qu'une surface.
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
         //SDL_RenderClear(renderer); //efface l'ecran
         //SDL_RenderCopy(renderer, texture_ecran, NULL, NULL); //affiche la texture
 //        //SDL_RenderPresent(renderer); // met à jour l'affichage
@@ -161,6 +164,7 @@ void visu()
 //    SDL_FreeSurface(ecran);
     SDL_DestroyWindow(window);  
    SDL_DestroyRenderer(renderer);
+<<<<<<< Updated upstream
 =======
         SDL_RenderClear(renderer); //efface l'ecran
         SDL_RenderCopy(renderer, texture_ecran, NULL, NULL); //affiche la texture
@@ -293,6 +297,8 @@ void visu()
     SDL_FreeSurface(ecran);
     SDL_DestroyWindow(Window);  
     SDL_DestroyRenderer(renderer);
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     SDL_Quit();
    return 0;
