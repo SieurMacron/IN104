@@ -26,7 +26,7 @@ int main (int argc, char * argv[])
 		// On affiche la Carte via SDL
 		affichage (Carte->w, Carte->h);
 		// Chargement des images du jeu.
-		loadTiles ();
+		chargement_im ();
 	
 		// Boucle while qui décrit le deroulement du jeu :
 		while (!jeu_termine)
@@ -42,7 +42,7 @@ int main (int argc, char * argv[])
 			// On ralentit un peu le jeu.
 			//SDL_Delay (175);
 			// Mise à jour des cases.
-			paint (Carte);
+			affichage_carte (Carte);
 
 
 
